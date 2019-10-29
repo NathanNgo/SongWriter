@@ -1,2 +1,2 @@
-from songwriter import songwriter
-play_music("song_writer", 4)
+from songwriter import *
+play_music("song.txt", 5)
