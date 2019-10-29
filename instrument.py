@@ -112,19 +112,9 @@ class instrument():
         sampling_rate = 44100
         samples = 44100*time
         x = np.arange(samples)
-        data = None
-        scaled = None
-        dir_path = None
-
-        if freq == 0:
-            file_name = f"./sound_files/silence_{freq}_{time}.wav"
-            data = np.random.uniform(0, 0, int(samples))
-            scaled = data
-        else:
-            file_name = f"./sound_files/sinewave_{freq}_{time}.wav"
-            data = np.sin(2 * np.pi * freq * x / sampling_rate)
-            scaled = np.int16(data/np.max(np.abs(data)) * 32767)
-
+        file_name = f"./sound_files/sinewave_{freq}_{time}.wav"
+        data = np.sin(2 * np.pi * freq * x / sampling_rate)
+        scaled = np.int16(data/np.max(np.abs(data)) * 32767)
         dir_path = os.path.dirname(file_name)
         
         # Create directory if it does not already exist.
@@ -137,7 +127,8 @@ class instrument():
                 if e.errno != errno.EEXISTS:
                     raise 
 
-        write(file_name, sampling_rate, scaled)
+        if not os.path.exists(file_name)
+            write(file_name, sampling_rate, scaled)
             
         if play == True:
             playsound(file_name)
