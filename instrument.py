@@ -4,9 +4,9 @@
 import numpy as np
 import os
 import errno
-import simpleaudio as sa
-from pydub import AudioSegment
-from pydub.playback import play
+#import simpleaudio as sa
+#from pydub import AudioSegment
+#from pydub.playback import play
 from scipy.io.wavfile import write
 from playsound import playsound
 
