@@ -127,7 +127,7 @@ class instrument():
                 if e.errno != errno.EEXISTS:
                     raise 
 
-        if not os.path.exists(file_name)
+        if not os.path.exists(file_name):
             write(file_name, sampling_rate, scaled)
             
         if play == True:
