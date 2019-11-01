@@ -75,7 +75,7 @@ class instrument():
     def __gen_list_instrument(self):
         with open(self.mp3_sounds_filename, "r") as f:
             for line in f:
-                self.chord_list.append(line.strip())
+                self.chord_list.append("./sound_files/" + line.strip())
 
 
     # This function recieves a signal and preforms an action on an instrument object.
@@ -92,14 +92,14 @@ class instrument():
             else: 
                 self.chord_number -= 1
                 print("Chord moved down")
-            print(f"Chord number: {self.chord_number}")
+            print("Chord number: {chord_number}".format(chord_number = self.chord_number))
         elif signal == 2:
             if self.chord_number == len(self.chord_list) - 1:
                 print("At highest possible chord")
             else:
                 self.chord_number += 1
                 print("Chord moved up")
-            print(f"Chord number: {self.chord_number}")
+            print("Chord number: {chord_number}".format(chord_number = self.chord_number))
         elif signal == 3:
             print("Playing sound")
             playsound(self.chord_list[self.chord_number])
@@ -112,7 +112,7 @@ class instrument():
         sampling_rate = 44100
         samples = 44100*time
         x = np.arange(samples)
-        file_name = f"./sound_files/sinewave_{freq}_{time}.wav"
+        file_name = "./sound_files/sinewave_{freq}_{time}.wav".format(freq = freq, time = time)
         data = np.sin(2 * np.pi * freq * x / sampling_rate)
         scaled = np.int16(data/np.max(np.abs(data)) * 32767)
         dir_path = os.path.dirname(file_name)
@@ -127,7 +127,7 @@ class instrument():
                 if e.errno != errno.EEXISTS:
                     raise 
 
-        if not os.path.exists(file_name)
+        if not os.path.exists(file_name):
             write(file_name, sampling_rate, scaled)
             
         if play == True:

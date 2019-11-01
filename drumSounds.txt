@@ -1,0 +1,6 @@
+cymbal_0.7.wav
+hi_foot__bass_drum.wav
+snare_drum.wav
+tom_drum.wav
+tom_drum2.wav
+tom_drum3.wav
