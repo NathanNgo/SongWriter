@@ -60,6 +60,7 @@ class instrument():
 
     # Contructor to make a musical intrument.
     def __init__(self, mp3_sounds_filename = None):
+        self.full_arr_gen = np.empty(0)
         if mp3_sounds_filename is None:
             self.chord_list = None
             self.sound_queue = []
@@ -126,6 +127,8 @@ class instrument():
                 # This stops race conditions.
                 if e.errno != errno.EEXISTS:
                     raise 
+ 
+        self.full_arr_gen = np.append(self.full_arr_gen, scaled)
 
         if not os.path.exists(file_name):
             write(file_name, sampling_rate, scaled)
@@ -143,6 +146,8 @@ class instrument():
 
     # Plays all the sounds that have been queued
     def queue_play(self):
+        file_name = "./total.wav"
+        write(file_name, 44100, self.full_arr_gen)
         for i in self.sound_queue:
             playsound(i)
     
